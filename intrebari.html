@@ -8,11 +8,109 @@
     <link rel="stylesheet" href="./styles/main.css" />
 
     <title>Intrebari</title>
+    <style>
+      .question {
+        border: 1px dashed #6e6e6e;
+        padding: 8px;
+      }
+
+      .question + .question {
+        margin-top: 16px;
+      }
+
+      .text {
+        background-color: #dcdcdc;
+        width: 250px;
+        /*
+        white-space: normal;
+        white-space: nowrap;
+        white-space: pre;
+        white-space: pre-wrap;
+        white-space: pre-line;
+        white-space: break-spaces;
+
+        Pt break-spaces, comportamentul este identic cu cel al pre-wrapului,
+        cu excepția faptului că:
+
+        - Orice secvență de spațiu alb păstrat ocupă întotdeauna spațiu,
+          inclusiv la sfârșitul liniei.
+
+        - Există o oportunitate de rupere de linie după fiecare caracter de
+          spațiu alb păstrat, inclusiv între caracterele de spațiu alb.
+
+        - Astfel de spații păstrate ocupă spațiu și nu atârnă și afectează
+          astfel dimensiunile intrinseci ale cutiei (dimensiunea minimă a
+          conținutului și dimensiunea maximă a conținutului).
+        */
+      }
+    </style>
   </head>
   <body>
     <main class="container">
       <h1 class="heading-primary">Intrebari</h1>
-      <section></section>
+
+      <!-- Text-Align -->
+      <section class="question">
+        <div>
+          <h3 style="text-align: center">this is the title</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Praesentium, ipsa?
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Praesentium, ipsa?
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Praesentium, ipsa?
+          </p>
+        </div>
+      </section>
+
+      <!-- Whitespace -->
+      <!--
+      Proprietatea specifica doua aspecte:
+      - Daca si cum spatiile albe sunt 'eliminate'
+      - Daca poate imparti continutul pe mai multe randuri
+      -->
+      <section class="question">
+        <div>
+          <label for="whiteSpace">Valoare pentru white-space:</label>
+
+          <select
+            name="whiteSpace"
+            id="whitespaceSelect"
+            onchange="updateWhiteSpace()"
+          >
+            <option selected="selected" value="normal">normal</option>
+            <option value="nowrap">nowrap</option>
+            <option value="pre">pre</option>
+            <option value="pre-wrap">pre-wrap</option>
+            <option value="pre-line">pre-line</option>
+            <option value=" break-spaces">break-spaces</option>
+          </select>
+        </div>
+        <!-- prettier-ignore -->
+        <p id="text" class="text">
+          Lorem ipsum dolor sit amet
+          consectetuer    adipiscing   elit     sed   diam   nonummy   
+       
+       
+       nibh euismod tincidunt ut laoreet
+        </p>
+      </section>
     </main>
+
+    <script>
+      function updateWhiteSpace() {
+        const selector = document.getElementById("whitespaceSelect");
+
+        const selectedWhiteSpaceValue = selector.value || "normal";
+        console.dir(selector);
+        const paragraph = document.getElementById("text");
+        paragraph.style = `white-space: ${selectedWhiteSpaceValue};`;
+      }
+    </script>
   </body>
 </html>
